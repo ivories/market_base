@@ -22,7 +22,7 @@ func ServeWs(w http.ResponseWriter, r *http.Request, h *Hub) {
 	msg := h.newMessage(fd, CONNECT_ESTABLISH, []byte{}, 0)
 	h.put(&msg)
 	go c.writePump(h, fd)
-	c.readPump(h, fd)
+	go c.readPump(h, fd)
 
 }
 func newHub() *Hub {
